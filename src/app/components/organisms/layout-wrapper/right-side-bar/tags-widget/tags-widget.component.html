@@ -1,0 +1,7 @@
+<div *ngIf="!loading && tags.length > 0" class="side-bar-tags">
+    <h4 class="tag-headline">Top {{ numList[tags.length - 1] }} Tags</h4>
+    <ng-container *ngFor="let tag of tags.slice(0, 10); let i = index">
+      <app-tags-widget-item [tagname]="tag.tagname" [postsCount]="tag.posts_count"></app-tags-widget-item>
+    </ng-container>
+    <a class="show-tags" routerLink="/tags">show more tags</a>
+  </div>

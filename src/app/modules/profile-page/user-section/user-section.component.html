@@ -1,0 +1,15 @@
+<div class='grid'>
+    <app-avatar-card
+      [id]="user.id"
+      [gravatar]="user.gravatar"
+      [views]="user.views"
+    ></app-avatar-card>
+    <app-content-card
+      [username]="user.username"
+      [answers_count]="user.answers_count"
+      [posts_count]="user.posts_count"
+      [comments_count]="user.comments_count"
+      [tags_count]="user.tags_count"
+      [created_at]="user.created_at"
+    ></app-content-card>
+  </div>

@@ -1,0 +1,31 @@
+<div class="answer-layout">
+    <div class="vote-cell">
+      <button (click)="onUpVote()">
+        <img src="assets/ArrowUpLg.svg" alt="upvote">
+      </button>
+      <div class="vote-count">{{ answer.voteCount }}</div>
+      <button (click)="onDownVote()">
+        <img src="assets/ArrowDownLg.svg" alt="downvote">
+      </button>
+    </div>
+    <div class="answer-item">
+      <div class="answer-content">
+        <p>{{ answer.content }}</p>
+      </div>
+      <div class="answer-actions">
+        <div class="action-btns">
+          <button (click)="onDeleteAnswer(answer.id)" class="s-link s-link__danger">Delete</button>
+        </div>
+        <div class="answer-owner">
+          <app-user-card
+            [createdAt]="answer.created_at"
+            [userId]="answer.user_id"
+            [gravatar]="answer.gravatar"
+            [username]="answer.username"
+            dateType="answered"
+            backgroundColor="transparent"
+          ></app-user-card>
+        </div>
+      </div>
+    </div>
+  </div>

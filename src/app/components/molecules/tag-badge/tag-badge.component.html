@@ -1,0 +1,5 @@
+<div class="tags-badge" [style.display]="display">
+  <a [routerLink]="link ? link : '/tags/' + tagName" [ngClass]="size">
+    {{ tagName }}
+  </a>
+</div>

@@ -1,0 +1,53 @@
+<div class="post-cell">
+    <div
+      class="post-text fc-black-800"
+      [innerHTML]="post.post_body | censorBadWords"
+    ></div>
+    <div class="post-tags fc-black-800">
+      <app-tag-badge
+        *ngFor="let tag of post.tags"
+        [tagName]="tag.tagname"
+        size="s-tag"
+        float="left"
+      ></app-tag-badge>
+    </div>
+    <div class="post-actions fc-black-800">
+      <div class="post-actions-extended">
+        <div class="post-btns">
+          <div class="post-menu">
+            <a
+              class="post-links"
+              title="short permalink to this question"
+              href="#"
+            >
+              share
+            </a>
+            <a
+              class="post-links"
+              title="Follow this question to receive notifications"
+              href="#"
+            >
+              follow
+            </a>
+            <ng-container *ngIf="!auth.loading && auth.isAuthenticated && post.user_id === auth.user.id">
+              <a
+                class="s-link s-link__danger"
+                style="padding-left: 4px"
+                title="Delete the post"
+                (click)="onDeletePost(post.id)"
+                href="javascript:void(0)"
+              >
+                delete
+              </a>
+            </ng-container>
+          </div>
+        </div>
+        <app-user-card
+          [createdAt]="post.created_at"
+          [userId]="post.user_id"
+          [gravatar]="post.gravatar"
+          [username]="post.username"
+        ></app-user-card>
+      </div>
+    </div>
+  </div>

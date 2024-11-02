@@ -1,0 +1,12 @@
+<div class="pagination-container">
+  <ngb-pagination
+    [collectionSize]="itemList.length"
+    [(page)]="page"
+    [pageSize]="itemsPerPage"
+    (pageChange)="onPageChange($event)"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    [rotate]="true"
+    [ellipses]="false"
+  ></ngb-pagination>
+</div>

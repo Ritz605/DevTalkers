@@ -1,0 +1,41 @@
+<div *ngIf="loading$ | async; else content">
+    <app-spinner type="page" width="75px" height="200px"></app-spinner>
+  </div>
+  <ng-template #content>
+    <div id="mainbar" class="tags-page fc-black-800">
+      <h1 class="headline">Tags</h1>
+      <p class="fs-body">
+        A tag is a keyword or label that categorizes your question with other,
+        similar questions. Using the right tags makes it easier for others to
+        find and answer your question.
+      </p>
+      <div class="headline-count">
+        <span>{{ (tags$ | async)?.length | number }} tags</span>
+      </div>
+      <div class="tags-box pl16 pr16 pb16">
+        <app-search-box
+          placeholder="filter by tag name"
+          (change)="handleChange($event)"
+          width="200px"
+        ></app-search-box>
+        <app-button-group
+          [buttons]="['Popular', 'Name', 'New']"
+          [selected]="sortType"
+          (setSelected)="sortType = $event"
+        ></app-button-group>
+      </div>
+      <div class="user-browser">
+        <div class="grid-layout">
+          <ng-container *ngFor="let tag of (tags$ | async) ?? [] | filter:fetchSearch | sort:sortType | paginate:page:itemsPerPage">
+            <app-tag-panel [tag]="tag"></app-tag-panel>
+          </ng-container>
+        </div>
+      </div>
+      <app-pagination
+        [page]="page"
+        [itemList]="(tags$ | async) ?? []"
+        [itemsPerPage]="itemsPerPage"
+        (paginationChange)="handlePaginationChange($event)"
+      ></app-pagination>
+    </div>
+  </ng-template>

@@ -1,0 +1,25 @@
+<div class="answer">
+    <div class="answer-header fc-black-800">
+      <div class="answer-sub-header">
+        <div class="answer-headline">
+          <h2>Answers</h2>
+        </div>
+        <app-button-group
+          [buttons]="['Newest', 'Oldest']"
+          [selected]="sortType"
+          (setSelected)="setSortType($event)"
+        ></app-button-group>
+      </div>
+    </div>
+    <ng-container *ngIf="loading$ | async; else answerList">
+      <app-spinner width="25px" height="25px"></app-spinner>
+    </ng-container>
+    <ng-template #answerList>
+      <div *ngFor="let answer of answers$ | async" class="answers">
+        <app-answer-item [answer]="answer"></app-answer-item>
+      </div>
+    </ng-template>
+    <div class="add-answer">
+      <app-answer-form></app-answer-form>
+    </div>
+  </div>

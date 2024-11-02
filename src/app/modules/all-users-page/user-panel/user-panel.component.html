@@ -1,0 +1,41 @@
+<div class="user-panel-info s-card bs-sm h:bs-md fc-black-500">
+    <div class="user-gravatar">
+      <a [routerLink]="['/users', user.id]">
+        <div class="logo-wrapper">
+          <img alt="user-logo" [src]="user.gravatar" />
+        </div>
+      </a>
+    </div>
+    <div class="user-details">
+      <a class="fc-blue-600" [routerLink]="['/users', user.id]">
+        {{ user.username }}
+      </a>
+      <span class="item">
+        <span class="count">
+          {{ user.posts_count }}
+          <span class="count-info">
+            {{ user.posts_count === 1 ? 'QUESTION' : 'QUESTIONS' }}
+          </span>
+        </span>
+      </span>
+      <span class="item">
+        <span class="count">
+          {{ user.tags_count }}
+          <span class="count-info">
+            {{ user.tags_count === 1 ? 'TAG' : 'TAGS' }}
+          </span>
+        </span>
+      </span>
+      <span class="item user-time" style="padding-top: 1px">
+        <span class="count">
+          {{ user.views }}
+          <span class="count-info">
+            {{ user.views === 1 ? 'PROFILE VIEW' : 'PROFILE VIEWS' }}
+          </span>
+        </span>
+        <span class="count" style="font-weight: 400">
+          {{ getFormattedDate(user.created_at.toString()) }}
+        </span>
+      </span>
+    </div>
+  </div>

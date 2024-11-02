@@ -1,0 +1,53 @@
+.rich-text-editor-root {
+    background-color: transparent !important;
+    border: none !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+  }
+  
+  .rich-text-editor-toolbar {
+    border-bottom: 1px solid var(--black-200);
+  }
+  
+  button {
+    width: 32px;
+  }
+  
+  button.button-format {
+    background: var(--white);
+  }
+  
+  button.button-format.code-block span {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 18px;
+  }
+  
+  button[title='Link'] span,
+  button[title='Remove Link'] span {
+    filter: invert(0%);
+    -webkit-filter: invert(0%);
+  }
+  
+  button[title='Link']:disabled span,
+  button[title='Remove Link']:disabled span {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+  }
+  
+  .rich-text-editor-editor {
+    height: 300px;
+  }
+  
+  .DraftEditor-root pre {
+    padding: 5px;
+    background-color: var(--black-100);
+    color: var(--black-800);
+  }
+  
+  .DraftEditor-root blockquote {
+    color: var(--black-800);
+  }

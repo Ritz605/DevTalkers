@@ -1,0 +1,19 @@
+<div class="owner" [style.float]="float" [style.backgroundColor]="backgroundColor">
+  <div class="user-block fc-black-500">
+    <div class="action-time">
+      {{ dateType }} {{ getFormattedDate() }} ago
+    </div>
+    <div class="user-logo">
+      <a class="user-link" [routerLink]="['/users', userId]">
+        <div class="logo-wrapper">
+          <img alt="user_logo" [src]="gravatar" />
+        </div>
+      </a>
+    </div>
+    <div class="user-profile">
+      <a class="user-profile-link fc-blue-600" [routerLink]="['/users', userId]">
+        {{ username }}
+      </a>
+    </div>
+  </div>
+</div>

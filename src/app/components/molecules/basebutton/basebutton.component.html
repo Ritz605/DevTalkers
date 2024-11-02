@@ -1,0 +1,8 @@
+<button
+  class="s-btn s-btn__filled"
+  [ngClass]="{'is-selected': selected === text}"
+  [style.margin]="'0'"
+  (click)="handleClick()"
+>
+  {{ text }}
+</button>

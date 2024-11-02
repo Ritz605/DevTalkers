@@ -1,0 +1,84 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bs-md">
+  <div class="hamburger">
+    <app-mobile-side-bar></app-mobile-side-bar>
+  </div>
+  <div class="header-brand-div">
+    <a class="navbar-brand" routerLink="/">
+      <img src="../../../assets/LogoMd.svg" class="full-logo" alt="Logo" />
+      <img src="../../../assets/LogoGlyphMd.svg" class="glyph-logo" alt="Small Logo" />
+    </a>
+    <ng-container *ngIf="!auth.loading">
+      <ng-container *ngIf="auth.isAuthenticated; else guestTabs">
+        <div class="s-navigation">
+          <a routerLink="/" class="s-navigation--item is-selected">Products</a>
+        </div>
+      </ng-container>
+      <ng-template #guestTabs>
+        <div class="s-navigation">
+          <a routerLink="/" class="s-navigation--item is-selected">Products</a>
+          <a routerLink="/" class="s-navigation--item not-selected">Customers</a>
+          <a routerLink="/" class="s-navigation--item not-selected">Use cases</a>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+  <form
+    id="search"
+    (submit)="onSearchSubmit()"
+    class="grid--cell fl-grow1 searchbar px12 js-searchbar"
+    autoComplete="off"
+  >
+    <div class="ps-relative search-frame">
+      <input
+        class="s-input s-input__search h100 search-box"
+        autoComplete="off"
+        type="text"
+        name="search"
+        maxLength="35"
+        placeholder="Search..."
+      />
+      <img src="../../../assets/Search.svg" alt="Search" />
+    </div>
+  </form>
+  <div class="header-search-div">
+    <img src="../../../assets/Search.svg" class="search-icon" (click)="toggleSearchState()" alt="Search Icon" />
+    <ng-container *ngIf="!auth.loading">
+      <ng-container *ngIf="auth.isAuthenticated; else guestLinks">
+        <div class="btns">
+          <a [routerLink]="['/users', auth.user.id]" [title]="auth.user.username">
+            <img alt="user-logo" class="logo" [src]="auth.user.gravatar" />
+          </a>
+          <app-link-button
+            text="Log out"
+            link="/login"
+            type="s-btn__filled"
+            (handleClick)="onLogout()"
+          ></app-link-button>
+        </div>
+      </ng-container>
+      <ng-template #guestLinks>
+        <div class="btns">
+          <app-link-button text="Log in" link="/login" type="s-btn__primary"></app-link-button>
+          <app-link-button text="Sign up" link="/register" type="s-btn__filled"></app-link-button>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</nav>
+<ng-container *ngIf="searchState">
+  <form
+    (submit)="onSearchSubmit()"
+    class="small-search-form"
+    autoComplete="off"
+  >
+    <input
+      class="small-search"
+      autoComplete="off"
+      type="text"
+      name="search"
+      maxLength="35"
+      placeholder="Search..."
+    />
+    <img src="../../../assets/Search.svg" class="small-search-icon" alt="Search Icon" />
+  </form>
+</ng-container>

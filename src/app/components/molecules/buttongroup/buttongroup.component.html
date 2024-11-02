@@ -1,0 +1,10 @@
+<div class="grid--cell">
+  <div class="grid s-btn-group js-filter-btn">
+    <app-base-button
+      *ngFor="let button of buttons; let i = index"
+      [text]="button"
+      [selected]="selected"
+      (onClick)="handleButtonClick(button)"
+    ></app-base-button>
+  </div>
+</div>

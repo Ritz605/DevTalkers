@@ -1,0 +1,15 @@
+<ng-container *ngIf="isHome; else defaultItem">
+    <a [routerLink]="link" class="home-link nav-link" routerLinkActive="active">
+      <div class="list-item">
+        <span class="menu-list-text">{{ text }}</span>
+      </div>
+    </a>
+  </ng-container>
+  <ng-template #defaultItem>
+    <a [routerLink]="link" class="icon-link nav-link" routerLinkActive="active">
+      <div class="list-item">
+        <span class="menu-list-icon">{{ icon }}</span>
+        <span class="menu-list-text">{{ text }}</span>
+      </div>
+    </a>
+  </ng-template>

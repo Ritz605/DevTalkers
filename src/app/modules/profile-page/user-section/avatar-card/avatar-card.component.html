@@ -1,0 +1,21 @@
+<div class='img-card'>
+    <div class='avatar-card'>
+      <div class='avatar'>
+        <a class='avatar-link' [routerLink]="['/users', id]">
+          <div class='logo-wrapper'>
+            <img
+              [src]="gravatar"
+              alt='user-logo'
+            />
+          </div>
+        </a>
+      </div>
+      <div class='title'>
+        <div class='grid fc-black-800'>
+          {{ views }}
+          &nbsp;
+          <span class='fc-light'>PROFILE VIEWS</span>
+        </div>
+      </div>
+    </div>
+  </div>

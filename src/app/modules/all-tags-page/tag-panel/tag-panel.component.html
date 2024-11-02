@@ -1,0 +1,16 @@
+<div class="grid--item s-card js-tag-cell d-flex fd-column">
+    <div class="d-flex jc-space-between ai-center mb12">
+      <app-tag-badge [tagName]="tag.tagname" size="s-tag" float="left"></app-tag-badge>
+    </div>
+  
+    <div class="flex--item fc-medium mb12 v-truncate4">
+      {{ tag.description }}
+    </div>
+  
+    <div class="mt-auto d-flex jc-space-between fs-caption fc-black-400">
+      <div class="flex--item">{{ tag.posts_count }} {{ tag.posts_count === 1 ? 'question' : 'questions' }}</div>
+      <div class="flex--item s-anchors s-anchors__inherit">
+        added {{ getFormattedDate(tag.created_at) }}
+      </div>
+    </div>
+  </div>

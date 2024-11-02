@@ -1,0 +1,8 @@
+<div class="spinner" [style.width]="width" [style.height]="height">
+  <ng-container *ngIf="type === 'page'; else componentSpinner">
+    <img src="../../../assets/PageSpinner.svg" alt="Page Spinner" />
+  </ng-container>
+  <ng-template #componentSpinner>
+    <img src="../../../assets/three-dots.svg" alt="Component Spinner" />
+  </ng-template>
+</div>

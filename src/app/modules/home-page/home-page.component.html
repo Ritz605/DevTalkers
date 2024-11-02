@@ -1,0 +1,15 @@
+<div *ngIf="loading$ | async; else content">
+    <app-spinner type="page" width="75px" height="200px"></app-spinner>
+  </div>
+  <ng-template #content>
+    <div id="mainbar" class="home-page fc-black-800">
+      <h1 class="headline">Welcome to the Home Page</h1>
+      <div class="user-browser">
+        <div class="grid-layout">
+          <ng-container *ngFor="let user of (users$ | async) ?? []">
+            <app-user-panel [user]="user"></app-user-panel>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-template>

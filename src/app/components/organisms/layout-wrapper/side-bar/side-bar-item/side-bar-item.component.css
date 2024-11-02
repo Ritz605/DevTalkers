@@ -1,0 +1,26 @@
+.nav-link {
+    text-decoration: none;
+    color: #c4c8cc;
+  }
+  
+  .home-link .list-item,
+  .icon-link .list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+  }
+  
+  .menu-list-icon {
+    min-width: 21px;
+  }
+  
+  .menu-list-text {
+    margin-left: 8px;
+  }
+  
+  .active {
+    font-weight: bold;
+    background: #2d2d2d;
+    color: #f2f2f3;
+  border-right: 3px solid #f48024;
+}

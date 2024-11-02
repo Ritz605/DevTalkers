@@ -1,0 +1,45 @@
+<div *ngIf="loading$ | async; else content">
+  <app-spinner type="page" width="75px" height="200px"></app-spinner>
+</div>
+<ng-template #content>
+  <ng-container *ngIf="(tag$ | async) as tag">
+    <div *ngIf="tag.redirect" (ngInit)="handleRedirect(tag.redirect)"></div>
+    <div id="mainbar" class="questions-page fc-black-800">
+      <div class="questions-grid">
+        <h3 class="questions-headline">
+          Questions tagged [{{ tag.tagName }}]
+        </h3>
+        <div class="questions-btn">
+          <app-link-button
+            text="Ask Question"
+            link="/add/question"
+            type="s-btn__primary"
+          ></app-link-button>
+        </div>
+      </div>
+      <p class="fs-body" [innerHTML]="tag.description"></p>
+      <div class="questions-tabs">
+        <span>
+          {{ tag.posts_count }} {{ tag.posts_count === 1 ? 'question' : 'questions' }}
+        </span>
+        <app-button-group
+          [buttons]="['Newest', 'Top', 'Views', 'Oldest']"
+          [selected]="sortType"
+          (setSelected)="handleSorting($event)"
+        ></app-button-group>
+      </div>
+      <div class="questions">
+        <ng-container *ngIf="tag.posts_count === 0; else postList">
+          <h4 style="margin: 30px 30px">
+            There are no questions from this tag
+          </h4>
+        </ng-container>
+        <ng-template #postList>
+          <ng-container *ngFor="let post of (posts$ | async)">
+            <app-post-item [post]="post"></app-post-item>
+          </ng-container>
+        </ng-template>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

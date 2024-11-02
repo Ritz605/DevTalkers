@@ -1,0 +1,46 @@
+<div class="posts">
+  <div class="stats-container fc-black-500">
+    <div class="stats">
+      <div class="vote">
+        <span class="vote-count">{{ post.comment_count }}</span>
+        <div class="count-text">comments</div>
+      </div>
+      <div *ngIf="post.answer_count > 0" class="vote answer">
+        <span class="vote-count">{{ post.answer_count }}</span>
+        <div class="count-text">answers</div>
+      </div>
+      <div *ngIf="post.answer_count === 0" class="vote">
+        <span class="vote-count">{{ post.answer_count }}</span>
+        <div class="count-text">answers</div>
+      </div>
+      <div class="vote">
+        <span class="vote-count">{{ post.tags.length }}</span>
+        <div class="count-text">tags</div>
+      </div>
+      <div class="vote">
+        <div class="count-text">{{ post.views }} views</div>
+      </div>
+    </div>
+  </div>
+  <div class="summary">
+    <h3>
+      <a [routerLink]="['/questions', post.id]">{{ post.title | censorBadWords }}</a>
+    </h3>
+    <div class="brief" [innerHTML]="post.body | htmlSubstring:200 | censorBadWords | injectEllipsis"></div>
+    <div class="profile-tags">
+      <app-tag-badge
+        *ngFor="let tag of post.tags; let i = index"
+        [tagName]="tag.tagname"
+        size="s-tag"
+      ></app-tag-badge>
+    </div>
+    <app-user-card
+      [createdAt]="post.created_at"
+      [userId]="post.user_id"
+      [gravatar]="post.gravatar"
+      [username]="post.username"
+      float="right"
+      backgroundColor="transparent"
+    ></app-user-card>
+  </div>
+</div>

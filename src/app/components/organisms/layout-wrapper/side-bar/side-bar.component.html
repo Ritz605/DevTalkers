@@ -1,0 +1,19 @@
+<div class="side-bar-container">
+  <div class="side-bar-tabs">
+    <app-side-bar-item [isHome]="true" link="/" text="Home"></app-side-bar-item>
+
+    <div class="public-tabs">
+      <p class="title fc-light">PUBLIC</p>
+      <ng-container *ngFor="let item of sideBarData">
+        <app-side-bar-item
+          [link]="item.link"
+          [icon]="item.icon || ''"
+          [text]="item.text"
+        ></app-side-bar-item>
+      </ng-container>
+    </div>
+    <div class="teams-tabs">
+      <p class="title fc-light">TEAMS</p>
+    </div>
+  </div>
+</div>

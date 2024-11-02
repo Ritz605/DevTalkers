@@ -1,0 +1,21 @@
+<div *ngIf="isAuthenticated; else loginPrompt">
+    <form (ngSubmit)="onSubmit()" class="answer-form">
+      <div class="answer-grid">
+        <label class="fc-black-800">Your Answer</label>
+        <div class="s-textarea rich-text-editor-container">
+          <app-markdown-editor
+            (change)="updateConvertedContent($event)"
+          ></app-markdown-editor>
+        </div>
+        <button type="submit" class="s-btn s-btn__primary">Post Your Answer</button>
+      </div>
+    </form>
+  </div>
+  <ng-template #loginPrompt>
+    <app-link-button
+      text="You need to login to add an answer"
+      link="/login"
+      type="s-btn__outlined"
+      marginTop="12px"
+    ></app-link-button>
+  </ng-template>

@@ -1,0 +1,11 @@
+<div class="question">
+    <div class="post-layout">
+      <app-vote-cell
+        [answerCount]="post.answer_count"
+        [commentCount]="post.comment_count"
+        [tagCount]="post.tags ? post.tags.length : 0"
+      ></app-vote-cell>
+      <app-post-cell></app-post-cell>
+      <app-comment-cell></app-comment-cell>
+    </div>
+  </div>

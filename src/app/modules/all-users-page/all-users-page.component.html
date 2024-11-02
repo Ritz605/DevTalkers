@@ -1,0 +1,39 @@
+<div *ngIf="loading$ | async; else content">
+    <app-spinner type="page" width="75px" height="200px"></app-spinner>
+  </div>
+  <ng-template #content>
+    <div id="mainbar" class="users-page fc-black-800">
+      <h1 class="headline">Users</h1>
+      <p class="fs-body">
+        A list of all users in the system. Use the search box to filter users by name.
+      </p>
+      <div class="headline-count">
+        <span>{{ (users$ | async)?.length | number }} users</span>
+      </div>
+      <div class="users-box pl16 pr16 pb16">
+        <app-search-box
+          placeholder="filter by user name"
+          (change)="handleSearchChange($event)"
+          width="200px"
+        ></app-search-box>
+        <app-button-group
+          [buttons]="['Name', 'Reputation', 'Newest']"
+          [selected]="sortType"
+          (setSelected)="sortType = $event"
+        ></app-button-group>
+      </div>
+      <div class="user-browser">
+        <div class="grid-layout">
+          <ng-container *ngFor="let user of (users$ | async) ?? [] | filter:searchQuery | sort:sortType | paginate:page:10">
+            <app-user-panel [user]="user"></app-user-panel>
+          </ng-container>
+        </div>
+      </div>
+      <app-pagination
+        [page]="page"
+        [itemList]="(users$ | async) ?? [] | filter:searchQuery"
+        [itemsPerPage]="10"
+        (paginationChange)="handlePaginationChange($event)"
+      ></app-pagination>
+    </div>
+  </ng-template>

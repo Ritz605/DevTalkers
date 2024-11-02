@@ -1,0 +1,10 @@
+<ng-container *ngIf="alerts.length > 0">
+    <ng-container *ngFor="let alert of alerts; let i = index">
+      <aside *ngIf="alert.alertType === 'success'" [attr.key]="i" class="alert s-notice s-notice__success s-notice__important" role="alert">
+        {{ alert.msg }}
+      </aside>
+      <aside *ngIf="alert.alertType !== 'success'" [attr.key]="i" class="alert s-notice s-notice__danger s-notice__important" role="alert">
+        {{ alert.msg }}
+      </aside>
+    </ng-container>
+  </ng-container>

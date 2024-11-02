@@ -1,0 +1,59 @@
+<div>
+    <div class="icon-holder">
+      <img src="../../../assets/LogoGlyphMd.svg" class="icon" alt="Logo" />
+    </div>
+    <div class="form-container">
+      <form class="login-form" (submit)="onSubmit($event)">
+        <div>
+          <label class="form-label s-label fc-black-600">Username</label>
+          <input
+            class="form-input s-input"
+            type="text"
+            name="username"
+            [(ngModel)]="formData.username"
+            (input)="onChange($event)"
+            id="username"
+            required
+          />
+        </div>
+        <div>
+          <label class="form-label s-label fc-black-600">Password</label>
+          <input
+            class="form-input s-input"
+            type="password"
+            name="password"
+            [(ngModel)]="formData.password"
+            (input)="onChange($event)"
+            id="password"
+            required
+          />
+        </div>
+        <div class="grid gs4 gsy fd-column js-auth-item">
+          <button class="s-btn s-btn__primary" id="submit-button" name="submit-button">
+            {{ action }}
+          </button>
+        </div>
+      </form>
+      <div class="fs-caption license fc-black-500">
+        By clicking “{{ action }}”, you agree to our
+        <a href="https://stackoverflow.com/legal/terms-of-service/public" class="-link">terms of service</a>,
+        <a href="https://stackoverflow.com/legal/privacy-policy" name="privacy" class="-link">privacy policy</a> and
+        <a href="https://stackoverflow.com/legal/cookie-policy" class="-link">cookie policy</a>
+        <input type="hidden" name="legalLinksShown" value="1" />
+      </div>
+    </div>
+    <div class="redirects fc-black-500">
+      <ng-container *ngIf="action === 'Sign up'; else logInLink">
+        <span>Already have an account? <a routerLink="/login" name="login">Log in</a></span>
+      </ng-container>
+      <ng-template #logInLink>
+        <span>Don't have an account? <a routerLink="/register" name="register">Sign up</a></span>
+      </ng-template>
+      <div>
+        Are you an employer?
+        <a href="https://careers.stackoverflow.com/employer/login" name="talent">
+          Sign up on Talent <img src="../../../assets/ExternalLink.svg" alt="External Link" />
+        </a>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<ng-container *ngIf="(loading$ | async) || !(user$ | async); else userContent">
+  <app-spinner type="page" width="75px" height="200px"></app-spinner>
+</ng-container>
+
+<ng-template #userContent>
+  <div id="mainbar" class="user-main-bar pl24 pt24">
+    <div class="user-card">
+      <div class="grid--cell s-navigation mb16">
+        <a routerLink="#" class="s-navigation--item is-selected" data-shortcut="P">Profile</a>
+        <a routerLink="#" class="s-navigation--item" data-shortcut="A">Activity</a>
+      </div>
+      <app-user-section [user]="user$ | async"></app-user-section>
+    </div>
+    <div class="row-grid">
+      <app-external-user-details></app-external-user-details>
+      <app-user-activity></app-user-activity>
+    </div>
+  </div>
+</ng-template>

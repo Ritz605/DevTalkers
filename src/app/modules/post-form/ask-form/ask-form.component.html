@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Title</label>
+      <input id="title" formControlName="title" type="text" placeholder="Enter title" />
+    </div>
+    <div>
+      <label for="body">Body</label>
+      <textarea id="body" formControlName="body" placeholder="Enter body"></textarea>
+    </div>
+    <div>
+      <label for="tags">Tags</label>
+      <input id="tags" formControlName="tags" type="text" placeholder="Enter tags" />
+    </div>
+    <button type="submit" [disabled]="askForm.invalid">Submit</button>
+  </form>

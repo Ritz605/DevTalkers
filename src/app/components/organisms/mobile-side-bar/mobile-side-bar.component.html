@@ -1,0 +1,21 @@
+<div class="Sidebar" [ngClass]="{'is-open': isOpen}">
+    <div class="SidebarOverlay" (click)="toggleSidebar()"></div>
+    <div class="SidebarContent">
+      <!-- Sidebar content goes here -->
+      <div class="content-logo">Logo</div>
+      <div class="content-inner">
+        <div class="side-bar-tabs">
+          <a class="home-link" href="#">
+            <p>Home</p>
+          </a>
+          <a class="icon-link" href="#">
+            <p><span class="icon">🏠</span> Dashboard</p>
+          </a>
+          <a class="link" href="#">
+            <p>Profile</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="ham" (click)="toggleSidebar()">☰</button>

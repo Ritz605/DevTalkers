@@ -1,0 +1,71 @@
+<div class="comments-cell">
+  <div class="comments">
+    <ul class="comments-list">
+      <ng-container *ngIf="comments$ | async as comments">
+        <ng-container *ngIf="comments.loading === null; else commentList">
+          <app-spinner width="25px" height="25px"></app-spinner>
+        </ng-container>
+        <ng-template #commentList>
+          <li *ngFor="let comment of comments.comments" class="comments-item">
+            <div class="comment-text fc-black-800">
+              <div class="comment-body">
+                <span class="body">{{ comment.body }}</span>
+                &nbsp;&ndash;&nbsp;
+                <app-tag-badge
+                  [tagName]="comment.username"
+                  size="s-tag"
+                  [link]="'/users/' + comment.user_id"
+                  display="inline"
+                ></app-tag-badge>
+                <span
+                  title="{{ comment.created_at | date: 'short' }}"
+                  style="color: #959ca3 !important"
+                  class="date fs-body1"
+                >
+                  {{ comment.created_at | date: 'short' }} ago
+                </span>
+              </div>
+              <ng-container *ngIf="auth$ | async as auth">
+                <ng-container *ngIf="!auth.loading && auth.isAuthenticated && comment.user_id === auth.user.id">
+                  <a
+                    class="s-tag s-tag__moderator"
+                    style="margin-top: 4px"
+                    title="Delete the comment"
+                    (click)="onDeleteComment(comment.id)"
+                    href="javascript:void(0)"
+                  >
+                    delete
+                  </a>
+                </ng-container>
+              </ng-container>
+            </div>
+          </li>
+        </ng-template>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="add-comment">
+    <ng-container *ngIf="auth$ | async as auth">
+      <ng-container *ngIf="!auth.loading && auth.isAuthenticated; else loginPrompt">
+        <form class="comment-form" (ngSubmit)="handleSubmit($event)">
+          <div>
+            <input
+              class="title-input s-input"
+              type="text"
+              name="body"
+              [(ngModel)]="formData.body"
+              id="title"
+              placeholder="Leave a comment"
+            />
+          </div>
+        </form>
+      </ng-container>
+      <ng-template #loginPrompt>
+        <app-link-button
+          text="You need to login to add a comment"
+          link="/login"
+        ></app-link-button>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

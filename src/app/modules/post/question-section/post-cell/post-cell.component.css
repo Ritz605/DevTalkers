@@ -1,0 +1,43 @@
+
+  
+  .post-text {
+    color: #242729;
+  }
+  
+  .post-tags {
+    color: #242729;
+  }
+  
+  .post-actions {
+    color: #242729;
+  }
+  
+  .post-actions-extended {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .post-btns {
+    display: flex;
+  }
+  
+  .post-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-links {
+    color: #0077cc;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .post-links:hover {
+    color: #005999;
+    text-decoration: underline;
+  }
+  
+  .s-link__danger {
+    color: #d9534f;
+    cursor: pointer;
+  }

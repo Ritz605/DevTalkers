@@ -1,0 +1,25 @@
+<div class="s-sidebarwidget s-sidebarwidget__yellow s-anchors s-anchors__grayscale mb16" data-tracker="cb=1">
+    <ul class="d-block p0 m0">
+      <ng-container *ngFor="let item of sideBarWidgetData; let i = index">
+        <ng-container *ngIf="item.type === 'header'; else itemTemplate">
+          <div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text fc-light d:fc-black-900 bb bbw1">
+            {{ item.title }}
+          </div>
+        </ng-container>
+        <ng-template #itemTemplate>
+          <li class="s-sidebarwidget--item d-flex px16">
+            <div class="flex--item1 fl-shrink0">
+              {{ item.icon }}
+            </div>
+            <div class="flex--item wmn0 ow-break-word">
+              <a
+                [href]="item.link"
+                class="js-gps-track"
+                [attr.data-ga]="'[&quot;community bulletin board&quot;,&quot;The Overflow Blog&quot;,&quot;' + item.link + '&quot;,null,null]'"
+                data-gps-track="communitybulletin.click({ priority: 1, position: 0 })">{{ item.title }}</a>
+            </div>
+          </li>
+        </ng-template>
+      </ng-container>
+    </ul>
+  </div>

@@ -1,0 +1,47 @@
+<div *ngIf="(loading$ | async) || !(posts$ | async)?.length; else content">
+    <app-spinner type="page" width="75px" height="200px"></app-spinner>
+  </div>
+  
+  <ng-template #content>
+    <div id="mainbar" class="questions-page fc-black-800">
+      <div class="questions-grid">
+        <h3 class="questions-headline">
+          {{ searchQuery ? 'Search Results' : 'All Questions' }}
+        </h3>
+        <div class="questions-btn">
+          <app-link-button
+            text="Ask Question"
+            link="/add/question"
+            type="s-btn__primary"
+          ></app-link-button>
+        </div>
+      </div>
+      <div *ngIf="searchQuery" class="search-questions">
+        <span style="color: #acb2b8; font-size: 12px;">
+          Results for {{ searchQuery }}
+        </span>
+        <app-search-box placeholder="Search..." name="search" pt="mt8"></app-search-box>
+      </div>
+      <div class="questions-tabs">
+        <span>
+          {{ (posts$ | async)?.length | number }} questions
+        </span>
+        <app-button-group
+          [buttons]="['Newest', 'Top', 'Views', 'Oldest']"
+          [selected]="sortType"
+          (setSelected)="setSortType($event)"
+        ></app-button-group>
+      </div>
+      <div class="questions">
+        <ng-container *ngFor="let post of (posts$ | async) ?? [] | filter:searchQuery | sort:sortType | paginate:10:page">
+          <app-post-item [post]="post"></app-post-item>
+        </ng-container>
+      </div>
+      <app-pagination
+        [page]="page"
+        [itemList]="(posts$ | async) ?? [] | filter:searchQuery"
+        [itemsPerPage]="10"
+        (handlePaginationChange)="handlePaginationChange($event)"
+      ></app-pagination>
+    </div>
+  </ng-template>

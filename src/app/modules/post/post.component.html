@@ -1,0 +1,23 @@
+<div *ngIf="loading$ | async; else content">
+    <app-spinner type="page" width="75px" height="200px"></app-spinner>
+  </div>
+  <ng-template #content>
+    <div id="mainbar" class="post">
+      <div class="question-header fc-black-800 pl24">
+        <h1>{{ (post$ | async)?.title }}</h1>
+        <div>
+          <app-link-button text="Ask Question" link="/add/question" type="s-btn__primary"></app-link-button>
+        </div>
+      </div>
+      <div class="question-date fc-black-800 pl24">
+        <div class="grid-cell">
+          <span class="fc-light">Asked</span>
+          <time>{{ (post$ | async)?.created_at | date:'short' }}</time>
+        </div>
+      </div>
+      <div class="question-main pl24 pt16">
+        <app-question-section></app-question-section>
+        <app-answer-section></app-answer-section>
+      </div>
+    </div>
+  </ng-template>
